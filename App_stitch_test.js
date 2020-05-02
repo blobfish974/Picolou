@@ -1,0 +1,124 @@
+/*import React from 'react'
+import { Button, StyleSheet, Text, View } from 'react-native';
+
+const { Stitch, AnonymousCredential } = 
+        require('mongodb-stitch-react-native-sdk');
+const MongoDB = require('mongodb-stitch-react-native-services-mongodb-remote');
+
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state={
+      currentUserId: undefined,
+      client: undefined,
+      data:undefined
+    };
+    this.res=0
+    this._loadClient = this._loadClient.bind(this);
+    this._onPressLogin = this._onPressLogin.bind(this);
+    this._onPressLogout = this._onPressLogout.bind(this);
+  }
+
+  componentDidMount() {
+    this._loadClient();
+  }
+
+  render() {
+    let loginStatus = "Currently logged out."
+
+    if(this.state.currentUserId) {
+      loginStatus = `Currently logged in as ${this.state.currentUserId}!`;
+
+    }
+
+    loginButton = <Button
+                    onPress={this._onPressLogin}
+                    title="Login"/>
+
+    logoutButton = <Button
+                    onPress={this._onPressLogout}
+                    title="Logout"/>
+
+    return (
+
+      <View style={styles.container}>
+        <Text> {loginStatus} </Text>
+        {this.state.currentUserId !== undefined ? logoutButton : loginButton}
+        <Text> {this.res} </Text>
+      </View>
+
+    );
+  }
+
+
+  _loadClient_ORIGINAL() {
+    Stitch.initializeDefaultAppClient('picolou_v1-hmjen').then(client => {
+      this.setState({ client });
+      if(client.auth.isLoggedIn) {
+        this.setState({ currentUserId: client.auth.user.id })
+      }
+    });
+  }
+  
+  _loadClient() {
+    Stitch.initializeDefaultAppClient('picolou_v1-hmjen').then(client => {
+      const mongoClient = stitchAppClient.getServiceClient(
+        RemoteMongoClient.factory,
+        "mongodb-atlas"
+      );
+      this.setState({ client });
+      if(client.auth.isLoggedIn) {
+        this.setState({ currentUserId: client.auth.user.id })
+      }
+    client.auth
+      .loginWithCredential(new AnonymousCredential())
+      .then(user => {
+        console.log(`Successfully logged in as user ${user.id}`);
+        this.setState({ currentUserId: user.id })
+        this.state.client.callFunction("function0").then(res => {
+          //this.setState({data: res});
+          this.res=res;
+        })
+        
+    }).catch(err => {
+      console.log(`Failed to log in anonymously: ${err}`);
+      this.setState({ currentUserId: undefined })
+  });
+
+  }
+}  
+      
+ 
+  _onPressLogin() {
+    this.state.client.auth.loginWithCredential(new AnonymousCredential()).then(user => {
+        console.log(`Successfully logged in as user ${user.id}`);
+        this.setState({ currentUserId: user.id })
+        this.state.client.callFunction("function0").then(res => {
+          //this.setState({data: res});
+          this.res=res;
+        })
+    }).catch(err => {
+        console.log(`Failed to log in anonymously: ${err}`);
+        this.setState({ currentUserId: undefined })
+    });
+  }
+
+  _onPressLogout() {
+    this.state.client.auth.logout().then(user => {
+        console.log(`Successfully logged out`);
+        this.setState({ currentUserId: undefined })
+    }).catch(err => {
+        console.log(`Failed to log out: ${err}`);
+        this.setState({ currentUserId: undefined })
+    });
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});*/
