@@ -132,7 +132,6 @@ class BarDetails extends React.Component {
   _displayFavoriteImage() {
     var sourceImage = require('../Images/ic_favorite_border.png')
     if (this.props.favoritesBar.findIndex(item => item.id === this.state.bar.id) !== -1) {
-      // Film dans nos favoris
       sourceImage = require('../Images/ic_favorite.png')
     }
     return (
@@ -148,7 +147,7 @@ _toggleFavorite() {
 }
 
 componentDidUpdate() {
-  console.log("componentDidUpdate : ")
+  //console.log("componentDidUpdate : ")
   //console.log(this.props.favoritesBar)
 }
 

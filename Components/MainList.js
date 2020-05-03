@@ -1,7 +1,8 @@
 import React from 'react'
 import { View, Text, FlatList, StyleSheet, ActivityIndicator, TextInput} from 'react-native'
 //import bars_data from '../Helpers/barData'
-import BarItem from './BarItem'
+//import BarItem from './BarItem'
+import BarList from './BarList'
 import { getBarsFromApi} from '../API/Api'
 
 class MainList extends React.Component {
@@ -17,22 +18,29 @@ class MainList extends React.Component {
         this.arrayholder=[]
         this.searchedText= ""
     }
-    componentDidMount() { //_ car méthode privée (règle nommage)
-    //_loadBars()
-
-        
+    componentDidMount() { 
         this.setState({ isLoading: true })
         //this.setState({bars:bars_data})
         //this.arrayholder=bars_data
         //this.setState({ isLoading: false })
 
-        
-        getBarsFromApi().then(data => {
-            this.setState({
-              bars: data,
-              isLoading: false
-            })
+
+        this._loadBars()
+        /*getBarsFromApi().then(data => {
+          this.setState({
+            bars: data,
+            isLoading: false
+          })
+        })*/
+    }
+
+    _loadBars() {
+      getBarsFromApi().then(data => {
+        this.setState({
+          bars: data,
+          isLoading: false
         })
+      })
     }
 
     _displayLoading(bar) {
@@ -79,10 +87,14 @@ class MainList extends React.Component {
                         } }
                         underlineColorAndroid='transparent'
                         placeholder="  Search Here" />
-                    <FlatList
+                    {/*<FlatList
                     data={this.state.bars}
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({item}) => <BarItem bar={item} displayDetailsForBar={this._displayDetailsForBar}/>}
+                    />*/}
+                    <BarList
+                      bars={this.state.bars} //on cherche les bars directement depuis le component MainList!
+                      navigation={this.props.navigation}
                     />
                     {this._displayLoading()}
                 </View>
