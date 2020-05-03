@@ -7,6 +7,7 @@
 - [📖 Introduction](#-introduction)
 - [🏗 Installation ](#-installation)
 - [⚙️ Functionnalities ](#-functionnalities)
+- [📝 Notes ](#-notes)
 
 
 
@@ -17,9 +18,9 @@ This mobile App was developped using Expo (so React Native + Javascript).
 It used an online API on Heroku to access the datas.
 Link to heroku app: [paris-bar-api](https://paris-bar-api.herokuapp.com/).
 
-We wanted to try a few bars with my friends for the last months together so I thought it could be cool to to a web app!
+We wanted to try a few bars with my friends for the last months together so I thought it could be cool to to a cross-platform mobile app!
 
-## 🏗 Installation (for develeopping)
+## 🏗 Installation (for app developping)
 
 To try the app just run
 ```sh
@@ -39,12 +40,13 @@ You'll then need to scan a QR code to try the application
 Actually:
 - display a (very small) list of bars
 - give details on a specific bar
+- favorites 
 
 
+## 📝 Notes 
 
 ### Features to add
 
-- page for favorites
 - general improvments on the app
 - map with all the bar -> maybe difficult
 
@@ -56,17 +58,17 @@ On the API:
 
 Here are the librairies I installed to run this project:
 
-mongodb-stitch-react-native-sdk
-mongodb-stitch-react-native-services-mongodb-remote
-react-navigation
-react-navigation-stack 
-react-native-gesture-handler  
-react-native-safe-area-context 
-react-native-screens
-redux
-react-redux
-react-navigation-tabs
-react-native-reanimated
+- mongodb-stitch-react-native-sdk
+- mongodb-stitch-react-native-services-mongodb-remote
+- react-navigation
+- react-navigation-stack 
+- react-native-gesture-handler  
+- react-native-safe-area-context 
+- react-native-screens
+- redux
+- react-redux
+- react-navigation-tabs
+- react-native-reanimated
 
 To install them I just ran
 ```sh
