@@ -5,8 +5,8 @@
 
 **Table of Contents**
 - [📖 Introduction](#-introduction)
-- [🏗 Installation ](#-installation)
-- [⚙️ Functionnalities ](#-functionnalities)
+- [🏗 Installation ](#-installation-for-app-developping)
+- [⚙️ Functionnalities ](#%EF%B8%8F-functionnalities)
 - [📝 Notes ](#-notes)
 
 

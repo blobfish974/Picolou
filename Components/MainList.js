@@ -1,11 +1,28 @@
 import React from 'react'
-import { View, Text, FlatList, StyleSheet, ActivityIndicator, TextInput} from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, ActivityIndicator, TextInput, SafeAreaView, Image} from 'react-native'
 //import bars_data from '../Helpers/barData'
 //import BarItem from './BarItem'
 import BarList from './BarList'
 import { getBarsFromApi} from '../API/Api'
 
 class MainList extends React.Component {
+
+  static navigationOptions = ({ navigation }) => {
+    const { params } = navigation.state
+    console.log("navigation:",navigation)
+    console.log("params:",params)
+    //if (params.goToParameters != undefined) {
+      return {
+          headerRight: () => <TouchableOpacity
+                          style={styles.touchable_headerrightbutton}
+                          onPress={() => params.goToParameters()}>
+                          <Image
+                            style={styles.share_image}
+                            source={require('../Images/ic_gear.png')} />
+                        </TouchableOpacity>
+      }
+    //}
+  }
 
     constructor(props) {
         super(props)
@@ -17,9 +34,10 @@ class MainList extends React.Component {
         }
         this.arrayholder=[]
         this.searchedText= ""
+        this._goToParameters=this._goToParameters.bind(this)
     }
     componentDidMount() { 
-        this.setState({ isLoading: true })
+        this.setState({ isLoading: true }, () => { this._updateNavigationParams() })
         //this.setState({bars:bars_data})
         //this.arrayholder=bars_data
         //this.setState({ isLoading: false })
@@ -32,6 +50,16 @@ class MainList extends React.Component {
             isLoading: false
           })
         })*/
+    }
+    _updateNavigationParams() {
+      console.log("OOOOOOOKKKKK _updateNavigationParams")
+      this.props.navigation.setParams({
+        goToParameters: this._goToParameters
+      })
+    }
+    _goToParameters() {
+      console.log("YYEEEAAAAAAHHHH (go to parameters")
+      this.props.navigation.navigate("Parameters")
     }
 
     _loadBars() {
@@ -75,6 +103,7 @@ class MainList extends React.Component {
 
     render() {
         return (
+          <SafeAreaView style={styles.main_container}>
             <View style={{flex:1}} >
                 <View style={{backgroundColor:'white',height:5}} >
         
@@ -99,6 +128,7 @@ class MainList extends React.Component {
                     {this._displayLoading()}
                 </View>
             </View>
+          </SafeAreaView>
         )
       }
     
@@ -177,6 +207,13 @@ const styles = StyleSheet.create({
         bottom: 10,
         alignItems: 'center',
         justifyContent: 'center'
+      },
+      share_image: {
+        width: 30,
+        height: 30
+      },
+      touchable_headerrightbutton: {
+        marginRight: 8
       }
   })
 

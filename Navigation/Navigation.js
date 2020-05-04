@@ -7,6 +7,8 @@ import MainList from '../Components/MainList'
 import BarDetails from '../Components/BarDetails'
 import Favorites from '../Components/Favorites'
 
+import Parameters from '../Components/Parameters'
+
 const MainStackNavigator = createStackNavigator({
     MainList: {
     screen: MainList,
@@ -16,6 +18,9 @@ const MainStackNavigator = createStackNavigator({
   },
   BarDetails: {
     screen: BarDetails
+  },
+  Parameters: {
+    screen: Parameters
   }
 });
 

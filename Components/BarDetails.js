@@ -1,9 +1,12 @@
 import React from 'react'
-import { StyleSheet, View, Text, ActivityIndicator, ScrollView, Image, Linking, Button, TouchableOpacity} from 'react-native'
+import { StyleSheet, View, Text, ActivityIndicator, ScrollView, Image, Linking, Button, TouchableOpacity, SafeAreaView} from 'react-native'
 //import { getFilmDetailFromApi, getImageFromApi } from '../API/TMDBApi'
 import { connect } from 'react-redux'
 
 class BarDetails extends React.Component {
+
+  
+
   constructor(props) {
     super(props)
     this.state = {
@@ -20,6 +23,8 @@ class BarDetails extends React.Component {
       })
     })*/
     //console.log(this.props.navigation.state.params)
+
+
     if(this.props.navigation.state.params!=undefined){
         this.setState({
             bar: this.props.navigation.state.params.bar,
@@ -74,6 +79,7 @@ class BarDetails extends React.Component {
     const { bar } = this.state
     if (bar != undefined) {
       return (
+        <SafeAreaView style={styles.main_container}>
         <ScrollView style={styles.scrollview_container}>
             <Image
             style={styles.image}
@@ -126,6 +132,7 @@ class BarDetails extends React.Component {
             <Text style={{marginBottom:5}}></Text>
             
         </ScrollView>
+        </SafeAreaView>
       )
     }
   }
