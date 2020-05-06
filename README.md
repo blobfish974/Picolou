@@ -69,6 +69,8 @@ Here are the librairies I installed to run this project:
 - react-redux
 - react-navigation-tabs
 - react-native-reanimated
+- redux-persist
+- @react-native-community/async-storage
 
 To install them I just ran
 ```sh
