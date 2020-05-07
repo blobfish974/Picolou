@@ -5,12 +5,15 @@ import { View, Text, TouchableOpacity, StyleSheet, ActivityIndicator, TextInput,
 import BarList from './BarList'
 import { getBarsFromApi} from '../API/Api'
 
+import { MaterialIcons } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons'; 
+
 class MainList extends React.Component {
 
   static navigationOptions = ({ navigation }) => {
     const { params } = navigation.state
-    console.log("navigation:",navigation)
-    console.log("params:",params)
+    //console.log("navigation:",navigation)
+    //console.log("params:",params)
     //if (params.goToParameters != undefined) {
       return {
           headerRight: () => <TouchableOpacity
@@ -52,13 +55,13 @@ class MainList extends React.Component {
         })*/
     }
     _updateNavigationParams() {
-      console.log("OOOOOOOKKKKK _updateNavigationParams")
+      //console.log("OOOOOOOKKKKK _updateNavigationParams")
       this.props.navigation.setParams({
         goToParameters: this._goToParameters
       })
     }
     _goToParameters() {
-      console.log("YYEEEAAAAAAHHHH (go to parameters")
+      //console.log("YYEEEAAAAAAHHHH (go to parameters")
       this.props.navigation.navigate("Parameters")
     }
 
@@ -68,6 +71,7 @@ class MainList extends React.Component {
           bars: data,
           isLoading: false
         })
+        this.arrayholder=data
       })
     }
 
@@ -89,7 +93,10 @@ class MainList extends React.Component {
     }
 
     _searchFilterFunction = text => {    
-        
+      /*console.log("searching for;")
+      console.log(text)
+      console.log(this.arrayholder)
+      console.log(this.state.bars)*/
         const newData = this.arrayholder.filter(item => {    
             const itemData = item.name.toUpperCase();
            const textData = text.toUpperCase();
@@ -99,6 +106,7 @@ class MainList extends React.Component {
         
         this.setState({ bars: newData }); 
         this.searchedText=text;
+        
       };
 
     render() {
@@ -109,13 +117,19 @@ class MainList extends React.Component {
         
                 </View>
                 <View style={styles.main_container}>
+                  <View style={styles.search_container} >
+                    <MaterialIcons name="search" size={35} color="grey" style={{padding:10}} />
                     <TextInput 
                         style={styles.textinput}
                         onChangeText={(text) => {
                             this._searchFilterFunction(text);
                         } }
                         underlineColorAndroid='transparent'
-                        placeholder="  Search Here" />
+                        placeholder="Search"
+                        clearButtonMode='while-editing' />
+                    {/*<Entypo.Button name="cross" size={24} color="black" onPress={this.searchedText= ""}/>*/}
+                    
+                  </View>
                     {/*<FlatList
                     data={this.state.bars}
                     keyExtractor={(item) => item.id.toString()}
@@ -183,13 +197,25 @@ const styles = StyleSheet.create({
       //marginTop: 5,
       backgroundColor:'white'
     },
-    textinput: {
+    search_container: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#EDEDEF',
+      borderRadius:20,
+      paddingLeft: 5,
       marginLeft: 5,
       marginRight: 5,
       height: 50,
-      backgroundColor: '#EDEDEF',
-      paddingLeft: 5,
-      borderRadius:20
+    },
+    textinput: {
+      flex:1,
+      //marginLeft: 5,
+      //marginRight: 5,
+      //height: 50,
+      //backgroundColor: '#EDEDEF',
+      //paddingLeft: 5,
+      //borderRadius:20
     },
     loading_container: {
       position: 'absolute',

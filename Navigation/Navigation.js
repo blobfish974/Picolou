@@ -6,8 +6,10 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import MainList from '../Components/MainList'
 import BarDetails from '../Components/BarDetails'
 import Favorites from '../Components/Favorites'
-
 import Parameters from '../Components/Parameters'
+import Profile from '../Components/Profile'
+
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const MainStackNavigator = createStackNavigator({
     MainList: {
@@ -17,7 +19,10 @@ const MainStackNavigator = createStackNavigator({
     }
   },
   BarDetails: {
-    screen: BarDetails
+    screen: BarDetails,
+    navigationOptions: {
+      title: 'Détail du bar'
+  }
   },
   Parameters: {
     screen: Parameters
@@ -32,7 +37,10 @@ const FavoritesStackNavigator = createStackNavigator({
     }
   },
   BarDetails: {
-    screen: BarDetails
+    screen: BarDetails,
+    navigationOptions: {
+      title: 'Détail du bar'
+  }
   }
 })
 
@@ -41,31 +49,51 @@ const BarTabNavigator = createBottomTabNavigator(
   {
     Main: {
       screen: MainStackNavigator,
-      navigationOptions: {
+      /*navigationOptions: {
         tabBarIcon: () => { 
           return <Image
-            source={require('../Images/ic_search.png')}
+            source={require('../Images/ic_list.png')}
             style={styles.icon}/> 
         }
-      }
+      }*/
+      navigationOptions: {
+        //tabBarLabel: 'Home',
+        tabBarIcon: ({ tintColor }) => (
+          <MaterialCommunityIcons name="home" size={30} color={tintColor}/>
+        ),
+      },
     },
     Favorites: {
       //screen: Favorites,
       screen: FavoritesStackNavigator,
       navigationOptions: {
-        tabBarIcon: () => {
+        //tabBarLabel: 'Favorites',
+        /*tabBarIcon: () => {
           return <Image
             source={require('../Images/ic_favorite.png')}
             style={styles.icon}/>
-        }
-      }
+        },*/
+        tabBarIcon: ({ tintColor }) => (
+          <MaterialCommunityIcons name="heart" size={30} color={tintColor}/>
+        ),
+      },
+    },
+    Profile: {
+      screen: Profile,
+      navigationOptions: {
+        tabBarLabel: 'Profile',
+        tabBarIcon: ({ tintColor }) => (
+          <MaterialCommunityIcons name="account" size={30} color={tintColor} />
+        ),
+      },
     }
   },
   {
     tabBarOptions: {
-      activeBackgroundColor: '#DDDDDD',
-      inactiveBackgroundColor: '#FFFFFF', 
-      showLabel: false, 
+      activeBackgroundColor: '#FFFFFF',
+      activeTintColor: '#037BFF',
+      inactiveBackgroundColor: '#DDDDDD', 
+      //showLabel: false, 
       showIcon: true
     }
   }
@@ -74,7 +102,7 @@ const BarTabNavigator = createBottomTabNavigator(
 const styles = StyleSheet.create({
   icon: {
     width: 30,
-    height: 30
+    height: 30,
   }
 })
 

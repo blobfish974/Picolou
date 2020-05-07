@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet, View, Text, ActivityIndicator, ScrollView, Image, Linking, Button, TouchableOpacity, SafeAreaView} from 'react-native'
 //import { getFilmDetailFromApi, getImageFromApi } from '../API/TMDBApi'
 import { connect } from 'react-redux'
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 class BarDetails extends React.Component {
 
@@ -123,7 +124,11 @@ class BarDetails extends React.Component {
             <Text style={styles.default_text}>Prix: {bar.price}</Text>
             <Text style={styles.default_text}>Quartier: {bar.district}</Text>
             <TouchableOpacity style={styles.maps_link} onPress={() => Linking.openURL(bar.google_maps)}>
-                <Text style={{color:'white'}}>Itinéraire via maps</Text>
+                <Text style={{color:'white'}}>Itinéraire  </Text>
+                {/*<FontAwesome.Button name="search" backgroundColor="#3b5998" onPress={this.loginWithFacebook}>
+              Login with Facebook
+      </FontAwesome.Button>*/}
+                <MaterialCommunityIcons name="google-maps" size={24} color="white" />
             </TouchableOpacity>
             <Text style={styles.default_text}>Adresse: {bar.address}</Text>
             <Text style={styles.link} onPress={() => Linking.openURL( bar.web_site)}>Site web </Text>
@@ -218,6 +223,7 @@ const styles = StyleSheet.create({
     color:'blue'
   },
   maps_link: {
+    flexDirection: 'row',
     padding:10,
     marginLeft: 70,
     marginRight: 70,
@@ -225,6 +231,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     backgroundColor:'#33A350',
     alignItems: "center",
+    justifyContent: 'center',
     borderRadius:20,
   },
   time_text: {

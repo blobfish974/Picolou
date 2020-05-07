@@ -2,6 +2,8 @@ import React from 'react'
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native'
 //import { getImageFromApi } from '../API/TMDBApi'
 
+import { MaterialIcons } from '@expo/vector-icons';
+
 class BarItem extends React.Component {
 
 
@@ -52,16 +54,17 @@ class BarItem extends React.Component {
                     <Text style={styles.time_text} >Ven:</Text>
                     <Text style={styles.time_text} >Sam:</Text>
                     <Text style={styles.time_text} >Dim:</Text>
+                    <Text style={{marginTop:5}}>{bar.price}</Text>
                 </View>
                 <View style={styles.timetable_container_2}>
                     {this._display_Timetable(bar.timetable)}
                 </View>
                 <View style={styles.timetable_container_3}>
                     <View style={styles.timetable_container_3_1}>
-                        <Text style={styles.time_text} >Prix: {bar.price}</Text>
+                    <Text style={styles.time_text} >{bar.district}</Text>
                     </View>
                     <View style={styles.timetable_container_3_2}>
-                        <Text style={styles.time_text} >{bar.district}</Text>
+                      <MaterialIcons name="keyboard-arrow-right" size={35} color="grey" />
                     </View>
                 </View>
             </View>
@@ -75,7 +78,9 @@ const styles = StyleSheet.create({
   main_container: {
     height: 190,
     flexDirection: 'row',
-    backgroundColor:'white'
+    backgroundColor:'#f7fefe',
+    borderRadius:20,
+    margin: 5
   },
   image: {
     width: 120,
@@ -131,6 +136,7 @@ const styles = StyleSheet.create({
   },
   timetable_container_3_2: {
     flex: 3,
+    alignItems: 'center',
     //backgroundColor:'black'
   },
   description_container: {
