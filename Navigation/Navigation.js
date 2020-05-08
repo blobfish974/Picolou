@@ -10,6 +10,7 @@ import Parameters from '../Components/Parameters'
 import Profile from '../Components/Profile'
 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 
 const MainStackNavigator = createStackNavigator({
     MainList: {
@@ -22,10 +23,7 @@ const MainStackNavigator = createStackNavigator({
     screen: BarDetails,
     navigationOptions: {
       title: 'Détail du bar'
-  }
-  },
-  Parameters: {
-    screen: Parameters
+    }
   }
 });
 
@@ -44,6 +42,18 @@ const FavoritesStackNavigator = createStackNavigator({
   }
 })
 
+const ProfileStackNavigator = createStackNavigator({
+  Profile: {
+    screen: Profile,
+    navigationOptions: {
+      title: 'Profile'
+    }
+  },
+  Parameters: {
+    screen: Parameters
+  }
+})
+
 
 const BarTabNavigator = createBottomTabNavigator(
   {
@@ -57,9 +67,10 @@ const BarTabNavigator = createBottomTabNavigator(
         }
       }*/
       navigationOptions: {
-        //tabBarLabel: 'Home',
+        tabBarLabel: 'Bar List',
         tabBarIcon: ({ tintColor }) => (
-          <MaterialCommunityIcons name="home" size={30} color={tintColor}/>
+          //<MaterialCommunityIcons name="home" size={30} color={tintColor}/>
+          <MaterialIcons name="format-list-bulleted" size={30} color={tintColor} />
         ),
       },
     },
@@ -79,7 +90,7 @@ const BarTabNavigator = createBottomTabNavigator(
       },
     },
     Profile: {
-      screen: Profile,
+      screen: ProfileStackNavigator,
       navigationOptions: {
         tabBarLabel: 'Profile',
         tabBarIcon: ({ tintColor }) => (

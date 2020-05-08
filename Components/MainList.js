@@ -10,23 +10,6 @@ import { Entypo } from '@expo/vector-icons';
 
 class MainList extends React.Component {
 
-  static navigationOptions = ({ navigation }) => {
-    const { params } = navigation.state
-    //console.log("navigation:",navigation)
-    //console.log("params:",params)
-    //if (params.goToParameters != undefined) {
-      return {
-          headerRight: () => <TouchableOpacity
-                          style={styles.touchable_headerrightbutton}
-                          onPress={() => params.goToParameters()}>
-                          <Image
-                            style={styles.share_image}
-                            source={require('../Images/ic_gear.png')} />
-                        </TouchableOpacity>
-      }
-    //}
-  }
-
     constructor(props) {
         super(props)
         this.page = 0
@@ -37,10 +20,11 @@ class MainList extends React.Component {
         }
         this.arrayholder=[]
         this.searchedText= ""
-        this._goToParameters=this._goToParameters.bind(this)
     }
     componentDidMount() { 
-        this.setState({ isLoading: true }, () => { this._updateNavigationParams() })
+        //this.setState({ isLoading: true }, () => { this._updateNavigationParams() })
+
+
         //this.setState({bars:bars_data})
         //this.arrayholder=bars_data
         //this.setState({ isLoading: false })
@@ -53,16 +37,6 @@ class MainList extends React.Component {
             isLoading: false
           })
         })*/
-    }
-    _updateNavigationParams() {
-      //console.log("OOOOOOOKKKKK _updateNavigationParams")
-      this.props.navigation.setParams({
-        goToParameters: this._goToParameters
-      })
-    }
-    _goToParameters() {
-      //console.log("YYEEEAAAAAAHHHH (go to parameters")
-      this.props.navigation.navigate("Parameters")
     }
 
     _loadBars() {
@@ -113,9 +87,9 @@ class MainList extends React.Component {
         return (
           <SafeAreaView style={styles.main_container}>
             <View style={{flex:1}} >
-                <View style={{backgroundColor:'white',height:5}} >
+                {/*<View style={{backgroundColor:'white',height:5}} >
         
-                </View>
+        </View>*/}
                 <View style={styles.main_container}>
                   <View style={styles.search_container} >
                     <MaterialIcons name="search" size={35} color="grey" style={{padding:10}} />
@@ -196,16 +170,19 @@ const styles = StyleSheet.create({
       flex: 1,
       //marginTop: 5,
       backgroundColor:'white'
+      //backgroundColor:'#08a0ff',
     },
     search_container: {
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#EDEDEF',
+      //backgroundColor: '#EDEDEF',
+      backgroundColor: '#f5f5f5',
       borderRadius:20,
       paddingLeft: 5,
       marginLeft: 5,
       marginRight: 5,
+      marginTop:5,
       height: 50,
     },
     textinput: {
@@ -233,13 +210,6 @@ const styles = StyleSheet.create({
         bottom: 10,
         alignItems: 'center',
         justifyContent: 'center'
-      },
-      share_image: {
-        width: 30,
-        height: 30
-      },
-      touchable_headerrightbutton: {
-        marginRight: 8
       }
   })
 

@@ -76,6 +76,16 @@ class BarDetails extends React.Component {
     }
 }
 
+_diplayDate() {
+  var d = new Date();
+  var n = d.getDay();
+  return(
+    <View >
+      <Text>{n}</Text>
+    </View>
+  )
+}
+
   _displayBar() {
     const { bar } = this.state
     if (bar != undefined) {
@@ -90,11 +100,7 @@ class BarDetails extends React.Component {
             <Text style={styles.title_text}>{this.state.bar.name}</Text>
             <View style={styles.timetable_container_header}>
                 <View style={styles.timetable_container_1}>
-                <TouchableOpacity
-                style={styles.favorite_container}
-                onPress={() => this._toggleFavorite()}>
-                {this._displayFavoriteImage()}
-            </TouchableOpacity>
+                  
 
                 </View>
                 <View style={styles.timetable_container_2}>
@@ -123,6 +129,11 @@ class BarDetails extends React.Component {
             </View>
             <Text style={styles.default_text}>Prix: {bar.price}</Text>
             <Text style={styles.default_text}>Quartier: {bar.district}</Text>
+            <TouchableOpacity
+                    style={styles.favorite_container}
+                    onPress={() => this._toggleFavorite()}>
+                    {this._displayFavoriteImage()}
+                  </TouchableOpacity>
             <TouchableOpacity style={styles.maps_link} onPress={() => Linking.openURL(bar.google_maps)}>
                 <Text style={{color:'white'}}>Itinéraire  </Text>
                 {/*<FontAwesome.Button name="search" backgroundColor="#3b5998" onPress={this.loginWithFacebook}>
@@ -135,6 +146,7 @@ class BarDetails extends React.Component {
             <Text style={styles.link} onPress={() => Linking.openURL(`tel:${bar.tel}`)}>Téléphoner au bar </Text>
             <Text style={styles.default_text}>Tel: {bar.tel}</Text>
             <Text style={{marginBottom:5}}></Text>
+            {this._diplayDate()}
             
         </ScrollView>
         </SafeAreaView>
